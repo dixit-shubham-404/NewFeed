@@ -5,6 +5,7 @@ Shows your favourite youtube videos, news and topics in a single platform...!!!
 # Contents
 * *1. Youtube Video Scraper*
 * *2. News Scraper*
+* *3. Researh Paper Extraction*
 
 # Usage
 * 1. Clone the Repository to your system by:
