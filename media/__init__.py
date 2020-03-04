@@ -3,7 +3,7 @@ from googleapiclient.discovery import build
 import json
 from general.general import *
 import os
-import shutil
+import shutil #deletes everything inside the folder
 
 api_key='AIzaSyAGw2OqbMwQKQPCp8FpN9F8oFqH10KSgGg'
 youtube = build('youtube', 'v3' , developerKey= api_key )
@@ -28,7 +28,7 @@ def opeartion():
         print('Your Bad!! You entered something wrong')
 
 
-#function to add new channel name to file
+#function to add new channel name to file(i will work on it)
 def add_channel(channel_name):
     res = youtube.search().list(q=channel_name, part='id', type='channel').execute()
     channel_id = res['items'][0]['id']['channelId']
