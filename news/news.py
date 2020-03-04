@@ -2,23 +2,51 @@
 
 from bs4 import BeautifulSoup
 import re
-# this is just substitution(will explain later)
-r_filename = "topics.html"
-f = open(r_filename,'r')
+import os
+import requests
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-# this is the file where content would be written
-w_filename = "content.txt"
-p = open(w_filename,'w')
+url = "https://news.google.com/topics"
 
-soup = BeautifulSoup(f,'html.parser')
-list(soup.children)
+def get_news_links():
+    r = requests.get(url = url , verify = False)
+    
+    # this is just substitution(will explain later)
+    # r_filename = "topics.html"
+    # f = open(r_filename,'r')
+    # this is the file where content would be written
+    w_filename = "content.txt"
+    p = open(w_filename,'w')
 
-test = []
-test = list(soup.find_all('a',href = re.compile(r'[/]([a-z]|[A-Z])\w+')))
+    soup = BeautifulSoup(r.content,'html.parser') # Creating a soup object
+    # list(soup.children)
 
-for i in test:
-    p.write(str(i))
-    p.write('\n')
+    # test = []
+    # test = list(soup.find_all('a',href = re.compile(r'[/]([a-z]|[A-Z])\w+'))) 
 
-f.close
-p.close
+    # for i in test:
+    #     if "stories" in str(i):
+    #         p.write(str(i))
+    #         p.write('\n')
+
+    # p.close
+
+    for i in soup.find_all('a',href=True):
+        cool = i['href']
+        if "stories" in i['href']:
+            p.write('\n\n')
+            p.write("https://news.google.com"+ cool[1:])
+        
+        elif "articles" in i['href']:
+            p.write('\n\n')
+            p.write("https://news.google.com"+ cool[1:])
+        
+        else:
+            continue
+    
+    p.close
+
+
+get_news_links()
+

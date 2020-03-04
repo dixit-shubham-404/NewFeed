@@ -1,4 +1,4 @@
-*** This software is under development ***
+*This software is under development*
 # NewFeed
 Shows your favourite youtube videos, news and topics in a single platform...!!!
 
@@ -12,3 +12,7 @@ Shows your favourite youtube videos, news and topics in a single platform...!!!
     `git clone https://github.com/sdixit1998/NewFeed.git`
 * 2. Run it by
     `python3 main.py`
+
+# Dependencies
+* 1. `pip3 install google-api-client bs4 requests re`
+
